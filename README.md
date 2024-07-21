@@ -1,2 +1,2 @@
-Python and Django need to be installed
+Python and Django need to be installed.
 pip install django
