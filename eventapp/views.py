@@ -74,11 +74,11 @@ class EventUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
     def get_queryset(self):
         return Event.objects.filter(organizer=self.request.user)
     
-    # def get_object(self):
-    #     obj = super().get_object()
-    #     if obj.organizer != self.request.user:
-    #         raise PermissionDenied("You do not have permission to edit or delete this event.")
-    #     return obj
+    def get_object(self):
+        obj = super().get_object()
+        if obj.organizer != self.request.user:
+            raise PermissionDenied("You do not have permission to edit or delete this event.")
+        return obj
 
     def update(self, request, *args, **kwargs):
         response = super().update(request, *args, **kwargs)
